@@ -1,0 +1,3 @@
+STDERR1
+STDOUT1
+
