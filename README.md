@@ -1,6 +1,6 @@
 # Modern Technology Practices
 It's a repo to store everything related to this course.
-### 01 Input output flush 
+## 01- Input output flush 
 
 #### <u>Description</u>
 We test all scenarios for flush function in C language.<br>
