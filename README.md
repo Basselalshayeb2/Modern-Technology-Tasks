@@ -48,3 +48,80 @@ We see that both "STDOUT\n" and "STDERR\n" appear immediately due to line-buffer
 "STDOUT" delay and wait until the program ends, "STDERR" appears immediately.
 - Redirecting output to a file without "/n" or flush: <br>
 "STDOUT" may delay, "STDERR" apears immediately.
+
+
+## 02- Overcommit
+
+#### **Description**
+
+This program demonstrates how memory allocation, reading, and writing operations impact system behavior. By simulating controlled memory access patterns, the program explores scenarios of paging, memory consumption, and system performance under varying conditions.
+
+The program is parameterized to allow flexible configuration of memory size, access modes, pause frequency, and duration. It also enables monitoring of system behavior using external tools like ```free```.
+
+### How to use
+
+- Compilation
+
+```bash
+gcc main.c
+```
+
+### Usage
+- You can check all configurations using:
+```bash
+./a.out -h
+```
+- Or use the following table:
+
+| Option | Description | Default value |
+| ---- | ---- | ---- |
+| -m, --memory_size | Memory size to allocate (MB) | 128 |
+| -a, --access_mode | Access mode: `read` or `write` | `read` ||  |  |  |
+| -p, --pause_steps | Number of steps (4 KB blocks) befure pausing | 1000 ||  |  |  |
+| -d, --pause_time | Pause duration in milliseconds | 100 ||  |  |  |
+| -h, --help | Show help message and exit |  |
+|  |  |  |
+
+### Examples
+1. Default
+
+```bash
+./a.out
+```
+
+2. Write mode
+
+```bash
+./a.out -m 256 -a write -p 500 -d 50
+```
+
+
+3. Stress test
+
+```bash
+./a.out -m 5120 -a write -p 10000 -d 0
+```
+
+3. Small allocaton with fast pauses
+
+```bash
+./a.out -m 500 -a read -p 100 -d 10
+```
+
+3. Help Message
+
+```bash
+./a.out -h
+```
+
+### Monitoring
+
+Using free -m during the pauses to observe total system memory usage in MB.
+
+### Results
+
+1. Read vs Write
+    - **Read Mode** : Memory usage remains stable.
+    - **Write Mode** : Physical memory allocation grows as pages are dirtied. When exceeding the maximum system will crash.
+2. Continuous Write with no pauses:
+    - Causes rapid memory consumption and high system load.
