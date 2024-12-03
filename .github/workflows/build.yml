@@ -1,0 +1,35 @@
+name: Build and Upload Programs
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+
+jobs:
+  build:
+    runs-on: ubuntu-;atest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Prepare build environment
+        run: sudo apt-get update && sudo apt-get instal -y build-essential
+      
+      - name: Build programs
+        run: | 
+          mkdir -p build
+          gcc -o build/flush_build 01.IO_Flush/index.c || exit 1
+          gcc -o build/over_commit_build 02.Overcommit/main.c || exit 1
+          done
+
+      - name: Upload executables
+        uses: actions/upload-artifact@v3
+        with:
+          name: executables
+          path: build/
+        
