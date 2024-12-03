@@ -1,6 +1,6 @@
 # Modern Technology Practices
 
-![Build and Test](https://github.com/Basselalshayeb2/Modern-Technology-Tasks/actions/workflows/build-and-test.yml/badge.svg)
+![Build and Test](https://github.com/Basselalshayeb2/Modern-Technology-Tasks/actions/workflows/build.yml/badge.svg)
 
 It's a repo to store everything related to this course.
 ## 01- Input output flush 
