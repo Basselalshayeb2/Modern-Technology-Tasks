@@ -25,7 +25,6 @@ jobs:
           mkdir -p build
           gcc -o build/flush_build 01.IO_Flush/index.c || exit 1
           gcc -o build/over_commit_build 02.Overcommit/main.c || exit 1
-          done
 
       - name: Upload executables
         uses: actions/upload-artifact@v3
