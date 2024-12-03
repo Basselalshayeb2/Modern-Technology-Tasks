@@ -48,17 +48,18 @@ jobs:
           cd executables
           chmod +x *
           echo "Running flush examples"
-          echo "Default exampl flush and fputs"
+          echo "Running Default exampl flush and fputs"
           timeout 10s ./flush_build -d || echo "Failed or took too long"
-          echo "Adding new line example"
+          echo "Running Adding new line example"
           timeout 10s ./flush_build -n || echo "Failed or took too long"
-          echo "No flush example"
+          echo "Running No flush example"
           timeout 10s ./flush_build -s || echo "Failed or took too long"
-          echo "Redirect example"
+          echo "Running Redirect example"
           timeout 10s ./flush_build -r > output_redirect.txt 2>&1 || echo "Failed or took too long"
+          cat output_redirect.txt
           echo "Running Overcommit examples"
-          echo "Default scenario"
+          echo "Reading Help"
           ./over_commit_build -h
           timeout 10s ./over_commit_build || echo "Failed or took too long"
           echo "Fast pauses example"
-          timeout 10s ./over_commit_build -m 500 -a write -p 100 -d 10 || echo "Failed or took too long"
+          timeout 10s ./over_commit_build -m 500 -a write -p 100000 -d 10 || echo "Failed or took too long"
