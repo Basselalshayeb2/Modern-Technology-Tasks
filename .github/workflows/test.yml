@@ -1,0 +1,31 @@
+name: Build and Upload Programs
+
+on:
+  workflow_run:
+    workflows: ["Build and Upload Programs"]
+    types:
+      - completed
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download executables
+        uses: actions/download-artifact@v3
+        with:
+          name: executables
+          path: executables/
+
+      - name: Run all examples
+        run: |
+          cd executables
+          echo "Running flush examples"
+          echo "Default exampl flush and fputs"
+          timeout 10s ./flush_build -d || echo "Failed or took too long"
+          echo "Adding new line example"
+          timeout 10s ./flush_build -n || echo "Failed or took too long"
+          echo "No flush example"
+          timeout 10s ./flush_build -s || echo "Failed or took too long"
+          echo "Redirect example"
+          timeout 10s ./flush_build -r > output_redirect.txt 2>&1 || echo "Failed or took too long"
