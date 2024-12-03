@@ -46,6 +46,7 @@ jobs:
       - name: Run all examples
         run: |
           cd executables
+          chmod 777 .
           echo "Running flush examples"
           echo "Default exampl flush and fputs"
           timeout 10s ./flush_build -d || echo "Failed or took too long"
@@ -61,4 +62,3 @@ jobs:
           timeout 10s ./over_commit_build || echo "Failed or took too long"
           echo "Fast pauses example"
           timeout 10s ./over_commit_build -m 500 -a write -p 100 -d 10 || echo "Failed or took too long"
-             

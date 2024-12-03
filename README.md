@@ -1,4 +1,7 @@
 # Modern Technology Practices
+
+
+
 It's a repo to store everything related to this course.
 ## 01- Input output flush 
 
