@@ -46,7 +46,7 @@ jobs:
       - name: Run all examples
         run: |
           cd executables
-          chmod 777 .
+          chmod +x *
           echo "Running flush examples"
           echo "Default exampl flush and fputs"
           timeout 10s ./flush_build -d || echo "Failed or took too long"
