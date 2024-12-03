@@ -60,7 +60,7 @@ jobs:
           echo "Running Overcommit examples"
           echo "Reading Help"
           ./over_commit_build -h
-          echp "Running the default example"
+          echo "Running the default example"
           timeout 10s ./over_commit_build || echo "Failed or took too long"
           echo "Running fast pauses example"
           timeout 10s ./over_commit_build -m 500 -a write -p 100000 -d 10 || echo "Failed or took too long"
