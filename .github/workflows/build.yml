@@ -55,8 +55,7 @@ jobs:
           echo "Running No flush example"
           timeout 10s ./flush_build -s || echo "Failed or took too long"
           echo "Running Redirect example"
-          timeout 10s ./flush_build -r > output_redirect.txt 2>&1 || echo "Failed or took too long"
-          cat output_redirect.txt
+          timeout 10s ./flush_build -r > output_redirect.txt || echo "Failed or took too long"
           echo "Running Overcommit examples"
           echo "Reading Help"
           ./over_commit_build -h
