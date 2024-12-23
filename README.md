@@ -128,3 +128,44 @@ Using free -m during the pauses to observe total system memory usage in MB.
     - **Write Mode** : Physical memory allocation grows as pages are dirtied. When exceeding the maximum system will crash.
 2. Continuous Write with no pauses:
     - Causes rapid memory consumption and high system load.
+
+
+## 03- Fractal
+
+### **Description**
+
+This module demonstrates generating fractals in C and saving the results in PGM format. I applied three fractals as I found:
+
+- Julia
+- Sierpinski Carpet
+- Mandelbrot Set
+
+I reused ```image.c``` to manage the image buffers and write the result to ```.pgm```
+
+### **How To Use**
+
+1. The main entry point is ```fractal.c``` that contains the fractal generation codes.
+2. Compilation:
+
+```bash
+gcc -c image.c -o image.o
+gcc -c fractal.c -o fractal.o -lm
+gcc image.o fractal.o -o fractal -lm
+```
+
+3. Running:
+We can pass two params:
+- Fractal type: ```julia```, ```sierpinski``` or ```mandelbrot```.
+- Output filename defaule ```fractal_output.pgm```
+
+```bash
+./fractal
+./fractal sierpinski carpet.pgm
+./fractal mandelbrot mandelbrot.pgm
+```
+
+4. Viewing PGM:
+
+```bash
+convert fractal_output.pgm fractal_output.png
+```
