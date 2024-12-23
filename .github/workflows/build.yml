@@ -27,7 +27,7 @@ jobs:
           gcc -o build/flush_build 01.IO_Flush/index.c || exit 1
           gcc -o build/over_commit_build 02.Overcommit/main.c || exit 1
           gcc -o build/image.o -c 03.Fractal/image.c || exit 1 
-          gcc -c 03.Fractal/fractal.c -o fractal.o -lm
+          gcc -c 03.Fractal/fractal.c -o build/fractal.o -lm
           gcc build/image.o build/fractal.o -o build/fractal -lm
 
       - name: Upload executables
