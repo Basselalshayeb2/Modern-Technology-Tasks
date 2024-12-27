@@ -144,19 +144,37 @@ I reused ```image.c``` to manage the image buffers and write the result to ```.p
 
 ### **How To Use**
 
-1. The main entry point is ```fractal.c``` that contains the fractal generation codes.
+1. The main entry point is ```main.c``` that contains the fractal generation codes.
 2. Compilation:
+   - **Option A: Using a Makefile** (recommended)
+     ```bash
+     make
+     make clean
+     ```
+     After `make`, you should have two executables:
+     1. `fractal` (production)
+     2. `test_fractal` (test binary)
 
-```bash
-gcc -c image.c -o image.o
-gcc -c fractal.c -o fractal.o -lm
-gcc image.o fractal.o -o fractal -lm
-```
+   - **Option B: Manual Commands**  
+     **Production build**:
+     ```bash
+     gcc -c image.c -o image.o
+     gcc -c fractal.c -o fractal.o -lm
+     gcc -c main.c -o main.o -lm
+     gcc image.o fractal.o main.o -o fractal -lm
+     ```
+     **Test build**:
+     ```bash
+     gcc -c image.c -o image.o
+     gcc -c fractal.c -o fractal.o -lm
+     gcc -c test_fractal.c -o test_fractal.o
+     gcc image.o fractal.o test_fractal.o -o test_fractal -lm
+     ```
 
 3. Running:
 We can pass two params:
 - Fractal type: ```julia```, ```sierpinski``` or ```mandelbrot```.
-- Output filename defaule ```fractal_output.pgm```
+- Output filename default ```fractal_output.pgm```
 
 ```bash
 ./fractal

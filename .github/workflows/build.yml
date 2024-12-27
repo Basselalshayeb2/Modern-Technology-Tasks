@@ -26,10 +26,13 @@ jobs:
           mkdir -p build
           gcc -o build/flush_build 01.IO_Flush/index.c || exit 1
           gcc -o build/over_commit_build 02.Overcommit/main.c || exit 1
-          gcc -o build/image.o -c 03.Fractal/image.c || exit 1 
-          gcc -c 03.Fractal/fractal.c -o build/fractal.o -lm
-          gcc build/image.o build/fractal.o -o build/fractal -lm
 
+          gcc -c 03.Fractal/image.c   -o build/image.o         || exit 1
+          gcc -c 03.Fractal/fractal.c -o build/fractal.o -lm   || exit 1
+          gcc -c 03.Fractal/main.c    -o build/main.o -lm      || exit 1
+          gcc build/image.o build/fractal.o build/main.o -o build/fractal -lm || exit 1
+          gcc -c 03.Fractal/test_fractal.c -o build/test_fractal.o || exit 1
+          gcc build/image.o build/fractal.o build/test_fractal.o -o build/test_fractal -lm || exit 1
       - name: Upload executables
         uses: actions/upload-artifact@v4
         with:
@@ -66,5 +69,6 @@ jobs:
           timeout 10s ./over_commit_build || echo "Failed or took too long"
           echo "Running fast pauses example"
           timeout 10s ./over_commit_build -m 500 -a write -p 100000 -d 10 || echo "Failed or took too long"
-          echo "Running fractal mandelbrot example"
-          timeout 10s ./fractal mandelbrot mandelbrot.pgm
+          echo "Running fractal tests"
+          timeout 10s ./fractal julia julia_output.pgm
+          timeout 10s ./test_fractal
